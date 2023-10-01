@@ -111,8 +111,8 @@ const UserCard = props => {
       <NamedLink className={css.link} name="ProfilePage" params={{ id: ensuredUser.id.uuid }}>
         <FormattedMessage id="UserCard.viewProfileLink" />
       </NamedLink>
-      {separator}
-      {isCurrentUser ? editProfileMobile : contact}
+      {/* {separator}
+      {isCurrentUser ? editProfileMobile : contact} */}
     </p>
   ) : null;
 

@@ -206,7 +206,7 @@ const EditListingDetailsFormComponent = props => (
             autoFocus={autoFocus}
           />
 
-          <FieldTextInput
+          {/* <FieldTextInput
             id={`${formId}description`}
             name="description"
             className={css.description}
@@ -220,7 +220,7 @@ const EditListingDetailsFormComponent = props => (
                 id: 'EditListingDetailsForm.descriptionRequired',
               })
             )}
-          />
+          /> */}
 
           <FieldSelectListingType
             name="listingType"

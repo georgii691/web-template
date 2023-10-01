@@ -210,7 +210,7 @@ export const EditListingDeliveryFormComponent = props => (
               key={shippingEnabled ? 'oneItemValidation' : 'noOneItemValidation'}
             />
 
-            <FieldCurrencyInput
+            {/* <FieldCurrencyInput
               id="shippingPriceInSubunitsAdditionalItems"
               name="shippingPriceInSubunitsAdditionalItems"
               className={css.input}
@@ -239,7 +239,7 @@ export const EditListingDeliveryFormComponent = props => (
               // validation function) with Final Form.
               // See example: https://codesandbox.io/s/changing-field-level-validators-zc8ei
               key={shippingEnabled ? 'additionalItemsValidation' : 'noAdditionalItemsValidation'}
-            />
+            /> */}
           </div>
 
           <Button
