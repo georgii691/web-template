@@ -85,6 +85,7 @@ const defaultDirectives = {
     '*.google-analytics.com',
     'js.stripe.com',
     'code.tidio.co',
+    'widget-v4.tidiochat.com',
   ],
   styleSrc: [self, unsafeInline, 'fonts.googleapis.com', 'api.mapbox.com'],
 };
