@@ -180,8 +180,8 @@ const tabCompleted = (tab, listing, config) => {
   switch (tab) {
     case DETAILS:
       return !!(
-        description &&
         title &&
+        // description &&
         listingType &&
         transactionProcessAlias &&
         unitType &&
@@ -311,24 +311,25 @@ class EditListingWizard extends Component {
   handlePublishListing(id) {
     const { onPublishListingDraft, currentUser, stripeAccount } = this.props;
 
-    const stripeConnected =
-      currentUser && currentUser.stripeAccount && !!currentUser.stripeAccount.id;
+    // const stripeConnected =
+    //   currentUser && currentUser.stripeAccount && !!currentUser.stripeAccount.id;
 
-    const stripeAccountData = stripeConnected ? getStripeAccountData(stripeAccount) : null;
+    // const stripeAccountData = stripeConnected ? getStripeAccountData(stripeAccount) : null;
 
-    const requirementsMissing =
-      stripeAccount &&
-      (hasRequirements(stripeAccountData, 'past_due') ||
-        hasRequirements(stripeAccountData, 'currently_due'));
+    // const requirementsMissing =
+    //   stripeAccount &&
+    //   (hasRequirements(stripeAccountData, 'past_due') ||
+    //     hasRequirements(stripeAccountData, 'currently_due'));
 
-    if (stripeConnected && !requirementsMissing) {
-      onPublishListingDraft(id);
-    } else {
-      this.setState({
-        draftId: id,
-        showPayoutDetails: true,
-      });
-    }
+    // if (stripeConnected && !requirementsMissing) {
+    //   onPublishListingDraft(id);
+    // } else {
+    //   this.setState({
+    //     draftId: id,
+    //     showPayoutDetails: true,
+    //   });
+    // }
+    onPublishListingDraft(id);
   }
 
   handlePayoutModalClose() {
@@ -390,7 +391,7 @@ class EditListingWizard extends Component {
       ? validListingTypes[0].transactionType.process
       : BOOKING_PROCESS_NAME;
 
-    // For oudated draft listing, we don't show other tabs but the "details"
+    // For outdated draft listing, we don't show other tabs but the "details"
     const tabs =
       invalidExistingListingType && isNewListingFlow
         ? TABS_DETAILS_ONLY
@@ -525,7 +526,7 @@ class EditListingWizard extends Component {
             );
           })}
         </Tabs>
-        <Modal
+        {/* <Modal
           id="EditListingWizard.payoutModal"
           isOpen={this.state.showPayoutDetails}
           onClose={this.handlePayoutModalClose}
@@ -589,7 +590,7 @@ class EditListingWizard extends Component {
               </>
             )}
           </div>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }
