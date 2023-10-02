@@ -152,7 +152,7 @@ const setNoAvailabilityForProductListings = processAlias => {
  */
 const getInitialValues = (props, existingListingType, listingTypes, listingFieldsConfig) => {
   const { description, title, publicData, privateData } = props?.listing?.attributes || {};
-  const { listingType } = publicData;
+  const { listingType, ...rest } = publicData;
 
   // Initial values for the form
   return {
@@ -160,7 +160,8 @@ const getInitialValues = (props, existingListingType, listingTypes, listingField
     // description,
     // Transaction type info: listingType, transactionProcessAlias, unitType
     ...getTransactionInfo(listingTypes, existingListingType),
-    ...pickListingFieldsData(publicData, 'public', listingType, listingFieldsConfig),
+    ...rest,
+    // ...pickListingFieldsData(publicData, 'public', listingType, listingFieldsConfig),
     ...pickListingFieldsData(privateData, 'private', listingType, listingFieldsConfig),
   };
 };
@@ -232,7 +233,7 @@ const EditListingDetailsPanel = props => {
           onSubmit={values => {
             const {
               title,
-              // description,
+              description,
               listingType,
               transactionProcessAlias,
               unitType,
@@ -249,13 +250,14 @@ const EditListingDetailsPanel = props => {
                 listingType,
                 transactionProcessAlias,
                 unitType,
-                ...pickListingFieldsData(
-                  rest,
-                  'public',
-                  listingType,
-                  listingFieldsConfig,
-                  clearUnrelatedCustomFields
-                ),
+                ...rest,
+                // ...pickListingFieldsData(
+                //   rest,
+                //   'public',
+                //   listingType,
+                //   listingFieldsConfig,
+                //   clearUnrelatedCustomFields
+                // ),
               },
               privateData: pickListingFieldsData(
                 rest,

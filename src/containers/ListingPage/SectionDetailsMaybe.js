@@ -7,6 +7,7 @@ import css from './ListingPage.module.css';
 const SectionDetailsMaybe = props => {
   const { publicData, metadata = {}, listingConfig, intl } = props;
   const { listingFields } = listingConfig || {};
+  console.log(publicData);
 
   if (!publicData || !listingConfig) {
     return null;
@@ -52,6 +53,34 @@ const SectionDetailsMaybe = props => {
             <span>{detail.value}</span>
           </li>
         ))}
+        <li key={'model'} className={css.detailsRow}>
+          <span className={css.detailLabel}>{'Model'}</span>
+          <span>{publicData?.model}</span>
+        </li>
+        <li key={'color'} className={css.detailsRow}>
+          <span className={css.detailLabel}>{'Color'}</span>
+          <span>{publicData?.color}</span>
+        </li>
+        <li key={'year'} className={css.detailsRow}>
+          <span className={css.detailLabel}>{'Year'}</span>
+          <span>{publicData?.year}</span>
+        </li>
+        <li key={'mileage'} className={css.detailsRow}>
+          <span className={css.detailLabel}>{'Mileage'}</span>
+          <span>{publicData?.mileage}</span>
+        </li>
+        <li key={'vin_code'} className={css.detailsRow}>
+          <span className={css.detailLabel}>{'VIN Code'}</span>
+          <span>{publicData?.vin_code}</span>
+        </li>
+        <li key={'cubic_capacity'} className={css.detailsRow}>
+          <span className={css.detailLabel}>{'Cubic Capacity'}</span>
+          <span>{publicData?.cubic_capacity}</span>
+        </li>
+        <li key={'power'} className={css.detailsRow}>
+          <span className={css.detailLabel}>{'Power (HP)'}</span>
+          <span>{publicData?.power}</span>
+        </li>
       </ul>
     </div>
   ) : null;

@@ -165,7 +165,7 @@ const hasValidListingFieldsInExtendedData = (publicData, privateData, config) =>
 const tabCompleted = (tab, listing, config) => {
   const {
     availabilityPlan,
-    description,
+    // description,
     geolocation,
     price,
     title,

@@ -172,6 +172,20 @@ const EditListingDetailsFormComponent = props => (
         values,
       } = formRenderProps;
 
+      const makeFieldConfig = listingFieldsConfig.find(field => field.key === 'make');
+      const sellerTypeFieldConfig = listingFieldsConfig.find(field => field.key === 'seller_type');
+      const priceNegotiationFieldConfig = listingFieldsConfig.find(
+        field => field.key === 'price_negotiation'
+      );
+      const bodyTypeFieldConfig = listingFieldsConfig.find(field => field.key === 'body_type');
+      const driveTrainFieldConfig = listingFieldsConfig.find(field => field.key === 'drivetrain');
+      const transmissionFieldConfig = listingFieldsConfig.find(
+        field => field.key === 'transmission'
+      );
+      const typeOfModificationsFieldConfig = listingFieldsConfig.find(
+        field => field.key === 'type_of_modifications'
+      );
+
       const { listingType } = values;
 
       const titleRequiredMessage = intl.formatMessage({
@@ -231,10 +245,206 @@ const EditListingDetailsFormComponent = props => (
             intl={intl}
           />
 
-          <AddListingFields
+          <CustomExtendedDataField
+            id="make"
+            name="make"
+            fieldConfig={makeFieldConfig}
+            defaultRequiredMessage={intl.formatMessage({
+              id: 'EditListingDetailsForm.defaultRequiredMessage',
+            })}
+          />
+
+          {/* <AddListingFields
             listingType={listingType}
             listingFieldsConfig={listingFieldsConfig}
             intl={intl}
+          /> */}
+
+          <FieldTextInput
+            id="model"
+            name="model"
+            className={css.title}
+            type="text"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.model' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.modelPlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="color"
+            name="color"
+            className={css.title}
+            type="text"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.color' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.colorPlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="year"
+            name="year"
+            className={css.title}
+            type="number"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.year' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.yearPlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="mileage"
+            name="mileage"
+            className={css.title}
+            type="number"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.mileage' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.mileagePlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="vin_code"
+            name="vin_code"
+            className={css.title}
+            type="text"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.vinCode' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.vinCodePlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <CustomExtendedDataField
+            id="seller_type"
+            name="seller_type"
+            fieldConfig={sellerTypeFieldConfig}
+            defaultRequiredMessage={intl.formatMessage({
+              id: 'EditListingDetailsForm.defaultRequiredMessage',
+            })}
+          />
+
+          <CustomExtendedDataField
+            id="price_negotiation"
+            name="price_negotiation"
+            fieldConfig={priceNegotiationFieldConfig}
+            defaultRequiredMessage={intl.formatMessage({
+              id: 'EditListingDetailsForm.defaultRequiredMessage',
+            })}
+          />
+
+          <CustomExtendedDataField
+            id="body_type"
+            name="body_type"
+            fieldConfig={bodyTypeFieldConfig}
+            defaultRequiredMessage={intl.formatMessage({
+              id: 'EditListingDetailsForm.defaultRequiredMessage',
+            })}
+          />
+          <CustomExtendedDataField
+            id="drivetrain"
+            name="drivetrain"
+            fieldConfig={driveTrainFieldConfig}
+            defaultRequiredMessage={intl.formatMessage({
+              id: 'EditListingDetailsForm.defaultRequiredMessage',
+            })}
+          />
+          <CustomExtendedDataField
+            id="transmission"
+            name="transmission"
+            fieldConfig={transmissionFieldConfig}
+            defaultRequiredMessage={intl.formatMessage({
+              id: 'EditListingDetailsForm.defaultRequiredMessage',
+            })}
+          />
+          <CustomExtendedDataField
+            id="type_of_modifications"
+            name="type_of_modifications"
+            fieldConfig={typeOfModificationsFieldConfig}
+            defaultRequiredMessage={intl.formatMessage({
+              id: 'EditListingDetailsForm.defaultRequiredMessage',
+            })}
+          />
+
+          <FieldTextInput
+            id="cubic_capacity"
+            name="cubic_capacity"
+            className={css.title}
+            type="number"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.cubicCapacity' })}
+            placeholder={intl.formatMessage({
+              id: 'EditListingDetailsForm.cubicCapacityPlaceholder',
+            })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="power"
+            name="power"
+            className={css.title}
+            type="number"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.power' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.powerPlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="modifications"
+            name="modifications"
+            className={css.title}
+            type="text"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.modifications' })}
+            placeholder={intl.formatMessage({
+              id: 'EditListingDetailsForm.modificationsPlaceholder',
+            })}
+            maxLength={TITLE_MAX_LENGTH}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="equipment"
+            name="equipment"
+            className={css.title}
+            type="text"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.equipment' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.equipmentPlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="recent_service_history"
+            name="recent_service_history"
+            className={css.title}
+            type="text"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.recentServiceHistory' })}
+            placeholder={intl.formatMessage({
+              id: 'EditListingDetailsForm.recentServiceHistoryPlaceholder',
+            })}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={required(titleRequiredMessage)}
+            autoFocus={autoFocus}
+          />
+
+          <FieldTextInput
+            id="video_links"
+            name="video_links"
+            className={css.title}
+            type="text"
+            label={intl.formatMessage({ id: 'EditListingDetailsForm.videoLinks' })}
+            placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.videoLinksPlaceholder' })}
+            maxLength={TITLE_MAX_LENGTH}
+            autoFocus={autoFocus}
           />
 
           <Button
