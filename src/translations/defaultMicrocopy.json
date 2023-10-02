@@ -203,6 +203,8 @@
   "EditListingDetailsForm.titleRequired": "You need to add a title.",
   "EditListingDetailsForm.model": "Model",
   "EditListingDetailsForm.modelPlaceholder": "Write your model",
+  "EditListingDetailsForm.color": "Color",
+  "EditListingDetailsForm.colorPlaceholder": "Define a color",
   "EditListingDetailsForm.year": "Year",
   "EditListingDetailsForm.yearPlaceholder": "Use only numbers, Example: 2012",
   "EditListingDetailsForm.mileage": "Mileage",
