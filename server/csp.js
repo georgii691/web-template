@@ -50,7 +50,13 @@ const defaultDirectives = {
     'widget-v4.tidiochat.com',
   ],
   formAction: [self],
-  frameSrc: [self, '*.stripe.com', '*.youtube-nocookie.com'],
+  frameSrc: [
+    self,
+    '*.stripe.com',
+    '*.youtube-nocookie.com',
+    'code.tidio.co',
+    'widget-v4.tidiochat.com',
+  ],
   imgSrc: [
     self,
     data,
@@ -79,6 +85,8 @@ const defaultDirectives = {
     '*.ytimg.com',
 
     '*.stripe.com',
+    'code.tidio.co',
+    'widget-v4.tidiochat.com',
   ],
   scriptSrc: [
     self,
