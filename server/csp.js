@@ -42,7 +42,13 @@ const defaultDirectives = {
     '*.sentry.io',
     '*.stripe.com',
   ],
-  fontSrc: [self, data, 'assets-sharetribecom.sharetribe.com', 'fonts.gstatic.com'],
+  fontSrc: [
+    self,
+    data,
+    'assets-sharetribecom.sharetribe.com',
+    'fonts.gstatic.com',
+    'widget-v4.tidiochat.com',
+  ],
   formAction: [self],
   frameSrc: [self, '*.stripe.com', '*.youtube-nocookie.com'],
   imgSrc: [
