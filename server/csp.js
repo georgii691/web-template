@@ -41,6 +41,8 @@ const defaultDirectives = {
     'sentry.io',
     '*.sentry.io',
     '*.stripe.com',
+    'code.tidio.co',
+    'widget-v4.tidiochat.com',
   ],
   fontSrc: [
     self,
