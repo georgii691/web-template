@@ -7,7 +7,6 @@ import css from './ListingPage.module.css';
 const SectionDetailsMaybe = props => {
   const { publicData, metadata = {}, listingConfig, intl } = props;
   const { listingFields } = listingConfig || {};
-  console.log(publicData);
 
   if (!publicData || !listingConfig) {
     return null;

@@ -4,6 +4,7 @@ const {
   calculateTotalFromLineItems,
   calculateShippingFee,
   hasCommissionPercentage,
+  greaterThanMaxCommission,
 } = require('./lineItemHelpers');
 const { types } = require('sharetribe-flex-sdk');
 const { Money } = types;
@@ -163,7 +164,7 @@ exports.transactionLineItems = (listing, orderData, providerCommission) => {
    * you should use one of the codes:
    * line-item/night, line-item/day, line-item/hour or line-item/item.
    *
-   * Pre-definded commission components expects line item code to be one of the following:
+   * Pre-defined commission components expects line item code to be one of the following:
    * 'line-item/provider-commission', 'line-item/customer-commission'
    *
    * By default OrderBreakdown prints line items inside LineItemUnknownItemsMaybe if the lineItem code is not recognized. */
@@ -184,14 +185,27 @@ exports.transactionLineItems = (listing, orderData, providerCommission) => {
   // Note: extraLineItems for product selling (aka shipping fee)
   //       is not included to commission calculation.
   const providerCommissionMaybe = hasCommissionPercentage(providerCommission)
-    ? [
-        {
-          code: 'line-item/provider-commission',
-          unitPrice: calculateTotalFromLineItems([order]),
-          percentage: getNegation(providerCommission.percentage),
-          includeFor: ['provider'],
-        },
-      ]
+    ? greaterThanMaxCommission(
+        calculateTotalFromLineItems([order]),
+        providerCommission.percentage,
+        40000
+      )
+      ? [
+          {
+            code: 'line-item/provider-commission',
+            unitPrice: new Money(-40000, unitPrice.currency),
+            quantity: 1,
+            includeFor: ['provider'],
+          },
+        ]
+      : [
+          {
+            code: 'line-item/provider-commission',
+            unitPrice: calculateTotalFromLineItems([order]),
+            percentage: getNegation(providerCommission.percentage),
+            includeFor: ['provider'],
+          },
+        ]
     : [];
 
   // Let's keep the base price (order) as first line item and provider's commission as last one.

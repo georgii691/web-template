@@ -276,3 +276,7 @@ exports.hasCommissionPercentage = commission => {
   }
   return isDefined;
 };
+
+exports.greaterThanMaxCommission = (unitPrice, percentage, maxCommission) => {
+  return percentage * unitPrice.amount > maxCommission;
+};
