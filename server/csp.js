@@ -58,6 +58,7 @@ const defaultDirectives = {
     '*.youtube-nocookie.com',
     'code.tidio.co',
     'widget-v4.tidiochat.com',
+    'cdnjs.cloudflare.com',
   ],
   imgSrc: [
     self,
