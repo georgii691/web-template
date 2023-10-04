@@ -703,26 +703,40 @@ export const requestPublishListingDraft = listingId => (dispatch, getState, sdk)
 // Images return imageId which we need to map with previously generated temporary id
 export function requestImageUpload(actionPayload, listingImageConfig) {
   return (dispatch, getState, sdk) => {
-    const id = actionPayload.id;
-    const imageVariantInfo = getImageVariantInfo(listingImageConfig);
-    const queryParams = {
-      expand: true,
-      'fields.image': imageVariantInfo.fieldsImage,
-      ...imageVariantInfo.imageVariants,
+    const addToUploadQueue = (file, id) => {
+      const imageVariantInfo = getImageVariantInfo(listingImageConfig);
+      const queryParams = {
+        expand: true,
+        'fields.image': imageVariantInfo.fieldsImage,
+        ...imageVariantInfo.imageVariants,
+      };
+
+      dispatch(uploadImageRequest({ id, file }));
+
+      const uploadTask = sdk.images
+        .upload({ image: file }, queryParams)
+        .then(resp => {
+          const img = resp.data.data;
+          // Uploaded image has an existing id that refers to file
+          // The UUID was created as a consequence of this upload call - it's saved to imageId property
+          return dispatch(
+            uploadImageSuccess({
+              data: { ...img, id, imageId: img.id, file },
+            })
+          );
+        })
+        .catch(e => dispatch(uploadImageError({ id, error: storableError(e) })));
+
+      return uploadTask;
     };
 
-    dispatch(uploadImageRequest(actionPayload));
-    return sdk.images
-      .upload({ image: actionPayload.file }, queryParams)
-      .then(resp => {
-        const img = resp.data.data;
-        // Uploaded image has an existing id that refers to file
-        // The UUID was created as a consequence of this upload call - it's saved to imageId property
-        return dispatch(
-          uploadImageSuccess({ data: { ...img, id, imageId: img.id, file: actionPayload.file } })
-        );
-      })
-      .catch(e => dispatch(uploadImageError({ id, error: storableError(e) })));
+    // Create an array of Promises for each image upload
+    const uploadPromises = actionPayload.map(fileObj => {
+      return addToUploadQueue(fileObj.file, fileObj.id);
+    });
+
+    // Wait for all image uploads to complete before resolving
+    return Promise.all(uploadPromises);
   };
 }
 
