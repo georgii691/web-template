@@ -233,14 +233,23 @@ const EditListingDetailsPanel = props => {
           onSubmit={values => {
             const {
               title,
-              description,
+              // description,
               listingType,
               transactionProcessAlias,
               unitType,
+              mileage,
+              power,
+              year,
+              cubic_capacity,
               ...rest
             } = values;
             // Clear custom fields that are not included for the selected process
             const clearUnrelatedCustomFields = true;
+
+            const convertedCubicCapacity = Number(cubic_capacity);
+            const convertedMileage = Number(mileage);
+            const convertedYear = Number(year);
+            const convertedPower = Number(power);
 
             // New values for listing attributes
             const updateValues = {
@@ -250,6 +259,10 @@ const EditListingDetailsPanel = props => {
                 listingType,
                 transactionProcessAlias,
                 unitType,
+                cubic_capacity: convertedCubicCapacity,
+                year: convertedYear,
+                mileage: convertedMileage,
+                power: convertedPower,
                 ...rest,
                 // ...pickListingFieldsData(
                 //   rest,

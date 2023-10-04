@@ -287,7 +287,49 @@ export class SearchPageComponent extends Component {
       listingFieldsConfig,
       activeListingTypes
     );
-    const availablePrimaryFilters = [...customPrimaryFilters, ...defaultFilters];
+    const additionalFilters = [
+      {
+        key: 'year',
+        schemaType: 'long',
+        scope: 'public',
+        label: 'Year',
+        min: 1960,
+        max: 2024,
+        step: 1,
+      },
+      {
+        key: 'mileage',
+        schemaType: 'long',
+        scope: 'public',
+        label: 'Mileage',
+        min: 0,
+        max: 40000,
+        step: 100,
+      },
+      {
+        key: 'power',
+        schemaType: 'long',
+        scope: 'public',
+        label: 'Power',
+        min: 0,
+        max: 1500,
+        step: 10,
+      },
+      {
+        key: 'cubic_capacity',
+        schemaType: 'long',
+        scope: 'public',
+        label: 'Cubic Capacity',
+        min: 0,
+        max: 9000,
+        step: 10,
+      },
+    ];
+    const availablePrimaryFilters = [
+      ...customPrimaryFilters,
+      ...additionalFilters,
+      ...defaultFilters,
+    ];
     const availableFilters = [
       ...customPrimaryFilters,
       ...defaultFilters,
