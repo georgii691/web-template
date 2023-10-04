@@ -43,6 +43,7 @@ const defaultDirectives = {
     '*.stripe.com',
     '*.tidio.co',
     'widget-v4.tidiochat.com',
+    'wss://socket.tidio.co',
   ],
   fontSrc: [
     self,
