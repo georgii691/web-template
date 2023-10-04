@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { SCHEMA_TYPE_ENUM, SCHEMA_TYPE_MULTI_ENUM } from '../../util/types';
+import { SCHEMA_TYPE_ENUM, SCHEMA_TYPE_MULTI_ENUM, SCHEMA_TYPE_LONG } from '../../util/types';
 import { constructQueryParamName } from './SearchPage.shared';
 import SelectSingleFilter from './SelectSingleFilter/SelectSingleFilter';
 import SelectMultipleFilter from './SelectMultipleFilter/SelectMultipleFilter';
 import BookingDateRangeFilter from './BookingDateRangeFilter/BookingDateRangeFilter';
 import KeywordFilter from './KeywordFilter/KeywordFilter';
 import PriceFilter from './PriceFilter/PriceFilter';
+import RangeFilter from './RangeFilter/RangeFilter';
 
 // Helper: get enumOptions in a format that works as query parameter
 const createFilterOptions = options => options.map(o => ({ key: `${o.option}`, label: o.label }));
@@ -130,6 +131,22 @@ const FilterComponent = props => {
           options={createFilterOptions(enumOptions)}
           schemaType={schemaType}
           searchMode={searchMode}
+          {...rest}
+        />
+      );
+    }
+    case SCHEMA_TYPE_LONG: {
+      const { min, max, label, step } = config;
+      return (
+        <RangeFilter
+          id={componentId}
+          label={label}
+          queryParamNames={[key]}
+          initialValues={initialValues([key], liveEdit)}
+          onSubmit={getHandleChangedValueFn(useHistoryPush)}
+          min={min}
+          max={max}
+          step={step}
           {...rest}
         />
       );

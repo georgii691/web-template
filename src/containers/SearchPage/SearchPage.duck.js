@@ -1,5 +1,5 @@
 import { storableError } from '../../util/errors';
-import { convertUnitToSubUnit, unitDivisor } from '../../util/currency';
+import { convertToDecimal, convertUnitToSubUnit, unitDivisor } from '../../util/currency';
 import {
   parseDateFromISO8601,
   getExclusiveEndDate,
@@ -127,6 +127,42 @@ export const searchListings = (searchParams, config) => (dispatch, getState, sdk
       : {};
   };
 
+  const powerSearchParams = powerParam => {
+    const values = powerParam ? powerParam.split(',') : [];
+    return powerParam && values.length === 2
+      ? {
+          pub_power: [convertToDecimal(values[0]), Number(values[1]) + 1].join(','),
+        }
+      : {};
+  };
+
+  const yearSearchParams = yearParam => {
+    const values = yearParam ? yearParam.split(',') : [];
+    return yearParam && values.length === 2
+      ? {
+          pub_year: [convertToDecimal(values[0]), Number(values[1]) + 1].join(','),
+        }
+      : {};
+  };
+
+  const mileageSearchParams = mileageParam => {
+    const values = mileageParam ? mileageParam.split(',') : [];
+    return mileageParam && values.length === 2
+      ? {
+          pub_mileage: [convertToDecimal(values[0]), Number(values[1]) + 1].join(','),
+        }
+      : {};
+  };
+
+  const cubicCapacitySearchParams = cubicCapacityParam => {
+    const values = cubicCapacityParam ? cubicCapacityParam.split(',') : [];
+    return cubicCapacityParam && values.length === 2
+      ? {
+          pub_cubic_capacity: [convertToDecimal(values[0]), Number(values[1]) + 1].join(','),
+        }
+      : {};
+  };
+
   const datesSearchParams = datesParam => {
     const searchTZ = 'Etc/UTC';
     const datesFilter = config.search.defaultFilters.find(f => f.key === 'dates');
@@ -186,15 +222,35 @@ export const searchListings = (searchParams, config) => (dispatch, getState, sdk
       : {};
   };
 
-  const { perPage, price, dates, sort, ...rest } = searchParams;
+  const {
+    perPage,
+    price,
+    dates,
+    sort,
+    power,
+    mileage,
+    year,
+    cubic_capacity,
+    ...rest
+  } = searchParams;
   const priceMaybe = priceSearchParams(price);
   const datesMaybe = datesSearchParams(dates);
+
+  const powerMaybe = powerSearchParams(power);
+  const yearMaybe = yearSearchParams(year);
+  const cubicCapacityMaybe = cubicCapacitySearchParams(cubic_capacity);
+  const mileageMaybe = mileageSearchParams(mileage);
+
   const sortMaybe = sort === config.search.sortConfig.relevanceKey ? {} : { sort };
 
   const params = {
     ...rest,
     ...priceMaybe,
     ...datesMaybe,
+    ...powerMaybe,
+    ...yearMaybe,
+    ...cubicCapacityMaybe,
+    ...mileageMaybe,
     ...sortMaybe,
     ...searchValidListingTypes(config.listing.listingTypes),
     perPage,
@@ -255,6 +311,8 @@ export const loadData = (params, search, config) => {
         'publicData.listingType',
         'publicData.transactionProcessAlias',
         'publicData.unitType',
+        'publicData.power',
+        'publicData.year',
         // These help rendering of 'purchase' listings,
         // when transitioning from search page to listing page
         'publicData.pickupEnabled',
