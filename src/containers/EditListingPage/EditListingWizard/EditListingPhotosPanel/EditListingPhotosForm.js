@@ -63,16 +63,18 @@ export const FieldAddImage = props => {
         const { accept, input, label, disabled: fieldDisabled } = fieldprops;
         const { name, type } = input;
         const onChange = e => {
-          const file = e.target.files[0];
-          formApi.change(`addImage`, file);
+          const files = e.target.files;
+          formApi.change(`addImage`, files);
           formApi.blur(`addImage`);
-          onImageUploadHandler(file);
+          onImageUploadHandler(files);
         };
         const inputProps = { accept, id: name, name, onChange, type };
         return (
           <div className={css.addImageWrapper}>
             <AspectRatioWrapper width={aspectWidth} height={aspectHeight}>
-              {fieldDisabled ? null : <input {...inputProps} className={css.addImageInput} />}
+              {fieldDisabled ? null : (
+                <input {...inputProps} className={css.addImageInput} multiple />
+              )}
               <label htmlFor={name} className={css.addImage}>
                 {label}
               </label>
@@ -115,12 +117,21 @@ export const EditListingPhotosFormComponent = props => {
   const [state, setState] = useState({ imageUploadRequested: false });
   const [submittedImages, setSubmittedImages] = useState([]);
 
-  const onImageUploadHandler = file => {
+  const onImageUploadHandler = files => {
     const { listingImageConfig, onImageUpload } = props;
-    if (file) {
+    if (files) {
       setState({ imageUploadRequested: true });
 
-      onImageUpload({ id: `${file.name}_${Date.now()}`, file }, listingImageConfig)
+      const fileLists = [];
+      for (const key in files) {
+        if (files[key].size) fileLists.push(files[key]);
+      }
+
+      const filesToUpload = fileLists.map((file, index) => {
+        return { id: `${file.name}_${Date.now()}_${index}`, file };
+      });
+
+      onImageUpload(filesToUpload, listingImageConfig)
         .then(() => {
           setState({ imageUploadRequested: false });
         })
