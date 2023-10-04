@@ -41,7 +41,7 @@ const defaultDirectives = {
     'sentry.io',
     '*.sentry.io',
     '*.stripe.com',
-    'code.tidio.co',
+    '*.tidio.co',
     'widget-v4.tidiochat.com',
   ],
   fontSrc: [
@@ -60,6 +60,7 @@ const defaultDirectives = {
     'widget-v4.tidiochat.com',
     'cdnjs.cloudflare.com',
   ],
+  mediaSrc: ['widget-v4.tidiochat.com'],
   imgSrc: [
     self,
     data,
