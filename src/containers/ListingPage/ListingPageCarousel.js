@@ -307,7 +307,7 @@ export const ListingPageComponent = props => {
                 <FormattedMessage id="ListingPage.orderTitle" values={{ title: richTitle }} />
               </H4>
             </div>
-            {/* <SectionTextMaybe text={description} showAsIngress /> */}
+            <SectionTextMaybe text={description} showAsIngress />
             <SectionDetailsMaybe
               publicData={publicData}
               metadata={metadata}

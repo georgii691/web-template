@@ -165,7 +165,7 @@ const hasValidListingFieldsInExtendedData = (publicData, privateData, config) =>
 const tabCompleted = (tab, listing, config) => {
   const {
     availabilityPlan,
-    // description,
+    description,
     geolocation,
     price,
     title,
@@ -181,7 +181,7 @@ const tabCompleted = (tab, listing, config) => {
     case DETAILS:
       return !!(
         title &&
-        // description &&
+        description &&
         listingType &&
         transactionProcessAlias &&
         unitType &&

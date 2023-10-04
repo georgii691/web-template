@@ -208,7 +208,7 @@ export const sanitizeListing = (entity, config = {}) => {
     ? {
         attributes: {
           title: sanitizeText(title),
-          // description: sanitizeText(description),
+          description: sanitizeText(description),
           ...sanitizePublicData(publicData),
           ...restAttributes,
         },

@@ -157,7 +157,7 @@ const getInitialValues = (props, existingListingType, listingTypes, listingField
   // Initial values for the form
   return {
     title,
-    // description,
+    description,
     // Transaction type info: listingType, transactionProcessAlias, unitType
     ...getTransactionInfo(listingTypes, existingListingType),
     ...rest,
@@ -233,7 +233,7 @@ const EditListingDetailsPanel = props => {
           onSubmit={values => {
             const {
               title,
-              // description,
+              description,
               listingType,
               transactionProcessAlias,
               unitType,
@@ -254,7 +254,7 @@ const EditListingDetailsPanel = props => {
             // New values for listing attributes
             const updateValues = {
               title: title.trim(),
-              // description,
+              description,
               publicData: {
                 listingType,
                 transactionProcessAlias,
