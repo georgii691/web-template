@@ -336,6 +336,22 @@ export const ListingPageComponent = props => {
                   ]
                 : pickedElements;
             }, [])} */}
+            <SectionTextMaybe key={'equipment'} heading={'Equipment'} text={publicData.equipment} />
+            <SectionTextMaybe
+              key={'modifications'}
+              heading={'Modifications'}
+              text={publicData.modifications}
+            />
+            <SectionTextMaybe
+              key={'recent_service_history'}
+              heading={'Recent Service History'}
+              text={publicData.recent_service_history}
+            />
+            <SectionTextMaybe
+              key={'video_links'}
+              heading={'Video Links'}
+              text={publicData.video_links}
+            />
 
             <SectionMapMaybe
               geolocation={geolocation}
