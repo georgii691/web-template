@@ -312,7 +312,7 @@ const EditListingDetailsFormComponent = props => (
             id="vin_code"
             name="vin_code"
             className={css.title}
-            type="text"
+            type="textarea"
             label={intl.formatMessage({ id: 'EditListingDetailsForm.vinCode' })}
             placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.vinCodePlaceholder' })}
             maxLength={TITLE_MAX_LENGTH}
@@ -401,12 +401,11 @@ const EditListingDetailsFormComponent = props => (
             id="modifications"
             name="modifications"
             className={css.title}
-            type="text"
+            type="textarea"
             label={intl.formatMessage({ id: 'EditListingDetailsForm.modifications' })}
             placeholder={intl.formatMessage({
               id: 'EditListingDetailsForm.modificationsPlaceholder',
             })}
-            maxLength={TITLE_MAX_LENGTH}
             autoFocus={autoFocus}
           />
 
@@ -414,10 +413,9 @@ const EditListingDetailsFormComponent = props => (
             id="equipment"
             name="equipment"
             className={css.title}
-            type="text"
+            type="textarea"
             label={intl.formatMessage({ id: 'EditListingDetailsForm.equipment' })}
             placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.equipmentPlaceholder' })}
-            maxLength={TITLE_MAX_LENGTH}
             validate={required(titleRequiredMessage)}
             autoFocus={autoFocus}
           />
@@ -426,12 +424,11 @@ const EditListingDetailsFormComponent = props => (
             id="recent_service_history"
             name="recent_service_history"
             className={css.title}
-            type="text"
+            type="textarea"
             label={intl.formatMessage({ id: 'EditListingDetailsForm.recentServiceHistory' })}
             placeholder={intl.formatMessage({
               id: 'EditListingDetailsForm.recentServiceHistoryPlaceholder',
             })}
-            maxLength={TITLE_MAX_LENGTH}
             validate={required(titleRequiredMessage)}
             autoFocus={autoFocus}
           />
@@ -440,10 +437,9 @@ const EditListingDetailsFormComponent = props => (
             id="video_links"
             name="video_links"
             className={css.title}
-            type="text"
+            type="textarea"
             label={intl.formatMessage({ id: 'EditListingDetailsForm.videoLinks' })}
             placeholder={intl.formatMessage({ id: 'EditListingDetailsForm.videoLinksPlaceholder' })}
-            maxLength={TITLE_MAX_LENGTH}
             autoFocus={autoFocus}
           />
 

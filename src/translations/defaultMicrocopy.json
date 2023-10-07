@@ -204,7 +204,7 @@
   "EditListingDetailsForm.model": "Model",
   "EditListingDetailsForm.modelPlaceholder": "Write your model",
   "EditListingDetailsForm.color": "Color",
-  "EditListingDetailsForm.colorPlaceholder": "Define a color",
+  "EditListingDetailsForm.colorPlaceholder": "Input Color of the Car",
   "EditListingDetailsForm.year": "Year",
   "EditListingDetailsForm.yearPlaceholder": "Use only numbers, Example: 2012",
   "EditListingDetailsForm.mileage": "Mileage",

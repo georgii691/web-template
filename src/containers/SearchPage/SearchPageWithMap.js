@@ -332,6 +332,7 @@ export class SearchPageComponent extends Component {
     ];
     const availableFilters = [
       ...customPrimaryFilters,
+      ...additionalFilters,
       ...defaultFilters,
       ...customSecondaryFilters,
     ];
